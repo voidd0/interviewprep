@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>interviewprep</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="ip-head">
+    <div class="ip-brand">
+      <img class="ip-mark" src="../icons/icon-32.png" alt="">
+      <span class="ip-title">interviewprep</span>
+    </div>
+    <span class="ip-counter" id="counter">— / 5 free</span>
+  </header>
+
+  <section class="ip-hero" id="hero">
+    <p class="ip-lede"><span class="ip-drop">O</span>pen any job posting on a tab, then click the button below to extract the role and generate a prep brief.</p>
+    <button id="generate" class="ip-btn ip-btn-primary">Generate prep brief →</button>
+    <p class="ip-meta">Works on LinkedIn · Indeed · Greenhouse · Lever · Workday · most career pages.</p>
+  </section>
+
+  <section class="ip-loading" id="loading" hidden>
+    <div class="ip-spinner"></div>
+    <p class="ip-meta">Reading the page… drafting questions…</p>
+  </section>
+
+  <section class="ip-result" id="result" hidden>
+    <article class="ip-card" id="role-card">
+      <div class="ip-eyebrow">role · detected</div>
+      <h2 id="role-title">—</h2>
+      <p id="role-org" class="ip-meta">—</p>
+    </article>
+
+    <article class="ip-card ip-card-rust" id="qs-card">
+      <div class="ip-eyebrow">5 likely questions</div>
+      <ol id="qs-list" class="ip-qs"></ol>
+    </article>
+
+    <article class="ip-card ip-card-sage" id="company-card">
+      <div class="ip-eyebrow">company research</div>
+      <p id="company-summary"></p>
+      <ul id="company-facts" class="ip-facts"></ul>
+    </article>
+
+    <div class="ip-result-actions">
+      <button id="copy-all" class="ip-btn ip-btn-ghost">copy all</button>
+      <button id="email-me" class="ip-btn ip-btn-ghost">email me a follow-up</button>
+    </div>
+  </section>
+
+  <section class="ip-error" id="error" hidden>
+    <div class="ip-eyebrow">couldn't read this page</div>
+    <p class="ip-error-text" id="error-text"></p>
+    <button id="retry" class="ip-btn ip-btn-ghost">try again</button>
+  </section>
+
+  <footer class="ip-foot">
+    <a href="https://extensions.voiddo.com/interviewprep/" target="_blank" rel="noopener">about</a>
+    <span class="ip-foot-mid">v<span class="ip-stroke">&oslash;</span>iddo</span>
+    <span id="status" class="ip-status"></span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
