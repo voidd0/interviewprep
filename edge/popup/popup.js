@@ -1,7 +1,7 @@
 /* interviewprep popup logic — extracts active-tab page text, sends to backend, renders the brief.
    All rendering uses safe DOM methods (textContent / createElement) — never innerHTML on backend output. */
 
-const API = 'https://api.voiddo.com/v1/interviewprep/generate';
+const API = 'https://scrb.voiddo.com/api/v1/ext/interviewprep/generate-free';
 
 const $ = (id) => document.getElementById(id);
 const show = (id, on = true) => { const el = $(id); if (on) el.removeAttribute('hidden'); else el.setAttribute('hidden', ''); };
@@ -111,7 +111,7 @@ async function generate() {
     const page = await readActiveTabText();
     const res = await fetch(API, {
       method: 'POST',
-      headers: { 'content-type': 'application/json', 'x-client-id': id },
+      headers: { 'content-type': 'application/json', 'X-Install-Id': id },
       body: JSON.stringify(page),
     });
     if (!res.ok) {
