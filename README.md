@@ -1,5 +1,11 @@
 # interviewprep
 
+[![npm version](https://img.shields.io/npm/v/@v0idd0/interviewprep.svg?color=A0573A)](https://www.npmjs.com/package/@v0idd0/interviewprep)
+[![npm downloads](https://img.shields.io/npm/dw/@v0idd0/interviewprep.svg?color=1F1A14)](https://www.npmjs.com/package/@v0idd0/interviewprep)
+[![License: MIT](https://img.shields.io/badge/license-MIT-A0573A.svg)](LICENSE)
+[![Manifest V3](https://img.shields.io/badge/manifest-v3-1F1A14)](https://developer.chrome.com/docs/extensions/mv3/intro/)
+[![Built by vøiddo](https://img.shields.io/badge/built%20by-v%C3%B8iddo-1F1A14)](https://voiddo.com/)
+
 > Open a job posting, click the icon. Get 5 likely questions, STAR-format answer prompts, and a company research card.
 
 A browser extension for Chrome, Firefox, and Edge. Manifest V3.
