@@ -1,0 +1,49 @@
+{
+  "name": "@v0idd0/interviewprep",
+  "version": "1.0.0",
+  "description": "interviewprep — format an interview prep brief (5 questions + STAR scaffolds + company research card) as markdown, plain text, JSON, or a readme. Library + CLI. Same formatters that power the interviewprep browser extension. Zero deps. Free forever from vøiddo.",
+  "main": "src/index.js",
+  "bin": {
+    "interviewprep": "./bin/interviewprep.js"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "interview",
+    "interview-prep",
+    "interview-questions",
+    "star-method",
+    "job-posting",
+    "career",
+    "browser-extension",
+    "chrome-extension",
+    "firefox-extension",
+    "cli",
+    "formatter",
+    "json-to-markdown",
+    "json-to-readme",
+    "voiddo",
+    "free",
+    "zero-deps"
+  ],
+  "author": "vøiddo <support@voiddo.com> (https://voiddo.com)",
+  "license": "MIT",
+  "homepage": "https://extensions.voiddo.com/interviewprep/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voidd0/interviewprep.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voidd0/interviewprep/issues"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}

@@ -59,6 +59,43 @@ No `host_permissions`, no content scripts, no background scraping, no remote cod
 
 The text from your active tab is sent to `api.voiddo.com/v1/interviewprep/generate` for AI processing. We don't store it after the response is returned. We don't link it to your identity. Full policy: [extensions.voiddo.com/interviewprep/privacy/](https://extensions.voiddo.com/interviewprep/privacy/).
 
+## CLI + library (`@v0idd0/interviewprep` on npm)
+
+Power users who want to format briefs from their own AI stack, CI pipelines, or terminal workflow can install the standalone library:
+
+```sh
+npm install @v0idd0/interviewprep
+# or, for one-off use:
+npx @v0idd0/interviewprep < brief.json
+```
+
+The package exposes the same formatters that power the extension popup — given an already-generated brief object, it serializes to markdown / plain / json / readme. **It does not call any AI** — to *generate* a brief from a job posting, install the browser extension above.
+
+```js
+const { formatBrief } = require('@v0idd0/interviewprep');
+
+const brief = {
+  role: 'Senior Frontend Engineer',
+  org:  'Acme Corp',
+  questions: [{ q: 'Why this team?', star: 'Tie their stack to your last shipped feature.' }],
+  company: { summary: 'Series B SaaS', facts: { stage: 'Series B', team: '~80' } },
+};
+
+console.log(formatBrief(brief, 'markdown'));   // → markdown string
+console.log(formatBrief(brief, 'readme'));     // → README-style export
+console.log(formatBrief(brief, 'json'));       // → canonical JSON
+```
+
+CLI:
+
+```sh
+interviewprep < brief.json                    # markdown to stdout
+interviewprep --file=brief.json -f readme     # readme export
+cat brief.json | interviewprep -f json > out.json
+```
+
+Zero dependencies, MIT-licensed, free forever.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).

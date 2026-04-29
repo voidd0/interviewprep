@@ -3,7 +3,5 @@
 node_modules/
 dist/
 *.zip
-src/
-bin/
 icon-placeholder.png
 ICON-PLACEHOLDER.txt
