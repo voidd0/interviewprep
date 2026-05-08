@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "interviewprep — turn any job posting into a full prep brief",
-  "short_name": "interviewprep",
-  "version": "1.0.0",
+  "name": "interviewprep \u2014 full prep brief from any job",
+  "short_name": "iprep",
+  "version": "1.0.2",
   "description": "Open a job posting, click the icon. Get 5 likely questions, STAR-format answer prompts, and a company research card.",
   "homepage_url": "https://extensions.voiddo.com/interviewprep/",
-  "author": "vøiddo",
+  "author": "v\u00f8iddo",
   "icons": {
     "16": "icons/icon-16.png",
     "32": "icons/icon-32.png",
@@ -18,7 +18,7 @@
       "32": "icons/icon-32.png",
       "48": "icons/icon-48.png"
     },
-    "default_title": "interviewprep — generate prep from this job posting",
+    "default_title": "interviewprep \u2014 generate prep from this job posting",
     "default_popup": "popup/popup.html"
   },
   "permissions": [
