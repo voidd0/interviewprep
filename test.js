@@ -2,9 +2,8 @@
 
 'use strict';
 
-const { execFileSync } = require('child_process');
-const path = require('path');
 const { formatBrief, validateBrief, simplifyBrief, FORMATS } = require('./src/index.js');
+const { runCli } = require('./bin/interviewprep.js');
 
 let pass = 0, fail = 0;
 function ok(label, cond) {
@@ -115,23 +114,30 @@ ok('md escapes asterisks', md2.includes('\\*italic\\*'));
 ok('md escapes backticks', md2.includes('\\`code\\`'));
 
 // ── CLI smoke
-const CLI = path.join(__dirname, 'bin', 'interviewprep.js');
-const cliMd = execFileSync('node', [CLI, '--format=markdown'], {
-  input: JSON.stringify(BRIEF),
-  encoding: 'utf8',
+(async () => {
+  const cliMd = await runCli(['node', 'interviewprep', '--format=markdown'], {
+    stdinText: JSON.stringify(BRIEF),
+  });
+  ok(
+    'CLI markdown matches lib output structure',
+    cliMd.code === 0 &&
+      cliMd.stdout.includes('# Senior Frontend Engineer') &&
+      cliMd.stdout.includes('## 5 likely questions')
+  );
+
+  const cliJson = await runCli(['node', 'interviewprep', '-f', 'json'], {
+    stdinText: JSON.stringify(BRIEF),
+  });
+  const cj = JSON.parse(cliJson.stdout);
+  eq('CLI json questions count', cj.questions.length, 5);
+
+  const cliVer = await runCli(['node', 'interviewprep', '--version']);
+  ok('CLI --version prints semver', cliVer.code === 0 && /^\d+\.\d+\.\d+$/.test(cliVer.stdout.trim()));
+
+  console.log('');
+  console.log(pass + ' passed, ' + fail + ' failed');
+  if (fail > 0) process.exit(1);
+})().catch(err => {
+  console.error(err);
+  process.exit(1);
 });
-ok('CLI markdown matches lib output structure', cliMd.includes('# Senior Frontend Engineer') && cliMd.includes('## 5 likely questions'));
-
-const cliJson = execFileSync('node', [CLI, '-f', 'json'], {
-  input: JSON.stringify(BRIEF),
-  encoding: 'utf8',
-});
-const cj = JSON.parse(cliJson);
-eq('CLI json questions count', cj.questions.length, 5);
-
-const cliVer = execFileSync('node', [CLI, '--version'], { encoding: 'utf8' }).trim();
-ok('CLI --version prints semver', /^\d+\.\d+\.\d+$/.test(cliVer));
-
-console.log('');
-console.log(pass + ' passed, ' + fail + ' failed');
-if (fail > 0) process.exit(1);

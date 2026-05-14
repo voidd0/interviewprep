@@ -8,12 +8,13 @@ This repo is one piece of [vøiddo](https://voiddo.com/), a small studio that sh
 |---|---|
 | [**scrb**](https://scrb.voiddo.com/) | AI product description generator — opinionated copy for Amazon, Etsy, Shopify, eBay |
 | [**rankd**](https://rankd.voiddo.com/) | opinionated cultural verdicts on music, books, films — savage / honest / hype mode |
+| [**tells**](https://tells.voiddo.com/) | read what people mean, not just what they typed — message, thread, and profile analysis |
 
 ## Browser extensions ([extensions.voiddo.com](https://extensions.voiddo.com/))
 
 | extension | what it does |
 |---|---|
-| [interviewprep](https://github.com/voidd0/interviewprep) | open a job posting → 5 likely questions + STAR scaffolds + company card |
+| [interviewprep](https://extensions.voiddo.com/interviewprep/?ref=interviewprep-from-the-studio) | open a job posting → 5 likely questions + STAR scaffolds + company card |
 | [jobmeta](https://github.com/voidd0/jobmeta) | one-click ATS autofill across 11 platforms + AI cover letter |
 | [pricepulse](https://github.com/voidd0/pricepulse) | watch competitor SaaS pricing pages and get notified when they move |
 | [tabsnap](https://github.com/voidd0/tabsnap) | format a tab list as markdown / readme / json — free forever |

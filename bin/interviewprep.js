@@ -72,54 +72,70 @@ function parseArgs(argv) {
   return opts;
 }
 
-function readStdin() {
+function readStdin(stream = process.stdin) {
   return new Promise((resolve, reject) => {
     let data = '';
-    if (process.stdin.isTTY) {
+    if (stream.isTTY) {
       reject(new Error('no input on stdin and no --file given. try `interviewprep --help`.'));
       return;
     }
-    process.stdin.setEncoding('utf8');
-    process.stdin.on('data', chunk => data += chunk);
-    process.stdin.on('end', () => resolve(data));
-    process.stdin.on('error', reject);
+    stream.setEncoding('utf8');
+    stream.on('data', chunk => data += chunk);
+    stream.on('end', () => resolve(data));
+    stream.on('error', reject);
   });
 }
 
-async function main() {
-  const opts = parseArgs(process.argv);
-  if (opts.help) { process.stdout.write(HELP); return; }
+async function runCli(argv, env = {}) {
+  const opts = parseArgs(argv);
+  if (opts.help) return { code: 0, stdout: HELP, stderr: '' };
   if (opts.version) {
     const pkg = require('../package.json');
-    process.stdout.write(pkg.version + '\n');
-    return;
+    return { code: 0, stdout: pkg.version + '\n', stderr: '' };
   }
   if (!FORMATS.includes(opts.format)) {
-    console.error('interviewprep: unknown format "' + opts.format + '" — must be one of: ' + FORMATS.join(', '));
-    process.exit(2);
+    return {
+      code: 2,
+      stdout: '',
+      stderr: 'interviewprep: unknown format "' + opts.format + '" — must be one of: ' + FORMATS.join(', ') + '\n',
+    };
   }
   let raw;
   try {
-    raw = opts.file ? fs.readFileSync(opts.file, 'utf8') : await readStdin();
+    if (opts.file) raw = (env.readFileSync || fs.readFileSync)(opts.file, 'utf8');
+    else if (Object.prototype.hasOwnProperty.call(env, 'stdinText')) raw = env.stdinText;
+    else raw = await readStdin(env.stdin || process.stdin);
   } catch (e) {
-    console.error('interviewprep: ' + e.message);
-    process.exit(1);
+    return { code: 1, stdout: '', stderr: 'interviewprep: ' + e.message + '\n' };
   }
   let brief;
   try {
     brief = JSON.parse(raw);
   } catch (e) {
-    console.error('interviewprep: input is not valid JSON: ' + e.message);
-    process.exit(1);
+    return { code: 1, stdout: '', stderr: 'interviewprep: input is not valid JSON: ' + e.message + '\n' };
   }
   let out;
   try {
     out = formatBrief(brief, opts.format);
   } catch (e) {
-    console.error('interviewprep: ' + e.message);
-    process.exit(1);
+    return { code: 1, stdout: '', stderr: 'interviewprep: ' + e.message + '\n' };
   }
-  process.stdout.write(out);
+  return { code: 0, stdout: out, stderr: '' };
 }
 
-main().catch(e => { console.error('interviewprep: ' + e.message); process.exit(1); });
+async function main() {
+  const result = await runCli(process.argv);
+  if (result.stdout) process.stdout.write(result.stdout);
+  if (result.stderr) process.stderr.write(result.stderr);
+  if (result.code) process.exit(result.code);
+}
+
+if (require.main === module) {
+  main().catch(e => { console.error('interviewprep: ' + e.message); process.exit(1); });
+}
+
+module.exports = {
+  HELP,
+  parseArgs,
+  runCli,
+};

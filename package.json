@@ -1,7 +1,7 @@
 {
   "name": "@v0idd0/interviewprep",
   "version": "1.0.2",
-  "description": "interviewprep — format an interview prep brief (5 questions + STAR scaffolds + company research card) as markdown, plain text, JSON, or a readme. Library + CLI. Same formatters that power the interviewprep browser extension. Zero deps. Free forever from vøiddo.",
+  "description": "interviewprep — deterministic interview-brief formatter and browser-extension companion for LinkedIn, Indeed, Greenhouse, Lever, Workday, and other job-posting workflows. Format prep briefs as markdown, plain text, JSON, or a README. Same export layer that powers the interviewprep extension. Zero deps.",
   "main": "src/index.js",
   "bin": {
     "interviewprep": "./bin/interviewprep.js"
@@ -21,10 +21,22 @@
     "interview-questions",
     "star-method",
     "job-posting",
+    "job-description",
+    "interview-brief",
+    "interview-brief-formatter",
+    "job-posting-to-markdown",
+    "job-posting-parser",
+    "browser-extension-companion",
+    "linkedin-jobs",
+    "indeed-jobs",
+    "greenhouse",
+    "lever",
+    "workday",
     "career",
     "browser-extension",
     "chrome-extension",
     "firefox-extension",
+    "edge-extension",
     "cli",
     "formatter",
     "json-to-markdown",
@@ -35,7 +47,7 @@
   ],
   "author": "vøiddo <support@voiddo.com> (https://voiddo.com)",
   "license": "MIT",
-  "homepage": "https://extensions.voiddo.com/interviewprep/",
+  "homepage": "https://extensions.voiddo.com/interviewprep/?ref=interviewprep-npm",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/voidd0/interviewprep.git"

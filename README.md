@@ -8,11 +8,24 @@
 
 > Open a job posting, click the icon. Get 5 likely questions, STAR-format answer prompts, and a company research card.
 
+A faster install path than reading the whole README:
+
+**[Portal](https://extensions.voiddo.com/interviewprep/?ref=interviewprep-readme)** · **[Upgrade](https://extensions.voiddo.com/interviewprep/upgrade/?ref=interviewprep-readme)** · **[Chrome](https://chromewebstore.google.com/detail/interviewprep-%E2%80%94-turn-any/nabnaeigafgmhclnkhihocchmdgdldkl)** · **[Firefox](https://addons.mozilla.org/en-US/firefox/addon/interviewprep-full-prep-job/)** · **[Edge](https://microsoftedge.microsoft.com/addons/detail/afedaadiheekmanlffogecfnopnllkok)** · **[GitHub](https://github.com/voidd0/interviewprep)** · **[npm](https://www.npmjs.com/package/@v0idd0/interviewprep)** · **[All extensions](https://extensions.voiddo.com/?ref=interviewprep-readme)** · **[All tools](https://tools.voiddo.com/?ref=interviewprep-readme)**
+
 A browser extension for Chrome, Firefox, and Edge. Manifest V3.
 
 ## Why
 
 Walking into an interview cold costs you the offer. Walking in with the wrong prep costs you a week. interviewprep reads the job posting on your active tab and turns it into a prep brief in about 12 seconds — questions tailored to the role, scaffolds telling you what to ground each answer in, plus a research card so you know who you're talking to before the call.
+
+It is built for the messy real places people actually prep from:
+
+- LinkedIn job pages
+- Indeed listings
+- Greenhouse
+- Lever
+- Workday
+- most first-party careers pages
 
 ## How it works
 
@@ -24,17 +37,29 @@ Walking into an interview cold costs you the offer. Walking in with the wrong pr
    - 5 likely interview questions with STAR-format answer scaffolds.
    - A company research card: stage, team, stack, leadership.
 
+## Browser-first path
+
+If you want the part that actually turns a live job posting into a prep brief, start with the extension:
+
+- [Portal landing](https://extensions.voiddo.com/interviewprep/?ref=interviewprep-readme)
+- [Chrome Web Store](https://chromewebstore.google.com/detail/interviewprep-%E2%80%94-turn-any/nabnaeigafgmhclnkhihocchmdgdldkl)
+- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/interviewprep-full-prep-job/)
+- [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/afedaadiheekmanlffogecfnopnllkok)
+
+If you already have your own generated brief and only need a deterministic formatter/export layer, install the npm package below.
+
 ## Pricing
 
 - **Free tier** — 5 generations / month. No account required; quota tracked locally.
-- **Pro** — $6.99 / month or $59.99 / year. 100 generations / month. Sign in via the upgrade page on the [extension portal page](https://extensions.voiddo.com/interviewprep/).
+- **Pro** — $6.99 / month or $59.99 / year. 100 generations / month. Sign in via the [upgrade page](https://extensions.voiddo.com/interviewprep/upgrade/?ref=interviewprep-readme).
 
 ## Install
 
-Public-store builds (recommended once submitted):
-- Chrome: *coming soon*
-- Firefox: *coming soon*
-- Edge: *coming soon*
+Public-store builds:
+- Chrome: published on [Chrome Web Store](https://chromewebstore.google.com/detail/interviewprep-%E2%80%94-turn-any/nabnaeigafgmhclnkhihocchmdgdldkl)
+- Firefox: published on [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/interviewprep-full-prep-job/)
+- Edge: published on [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/afedaadiheekmanlffogecfnopnllkok)
+- Landing page: [extensions.voiddo.com/interviewprep/](https://extensions.voiddo.com/interviewprep/?ref=interviewprep-readme)
 
 Sideload (now):
 - Chrome / Edge: `chrome://extensions` → Developer mode → *Load unpacked* → pick `chrome/`.
@@ -63,7 +88,7 @@ No `host_permissions`, no content scripts, no background scraping, no remote cod
 
 ## Privacy
 
-The text from your active tab is sent to `api.voiddo.com/v1/interviewprep/generate` for AI processing. We don't store it after the response is returned. We don't link it to your identity. Full policy: [extensions.voiddo.com/interviewprep/privacy/](https://extensions.voiddo.com/interviewprep/privacy/).
+The text from your active tab is sent to `api.voiddo.com/v1/interviewprep/generate` for AI processing. We don't store it after the response is returned. We don't link it to your identity. Full policy: [extensions.voiddo.com/interviewprep/privacy/](https://extensions.voiddo.com/interviewprep/privacy/?ref=interviewprep-readme).
 
 ## CLI + library (`@v0idd0/interviewprep` on npm)
 
@@ -75,7 +100,7 @@ npm install @v0idd0/interviewprep
 npx @v0idd0/interviewprep < brief.json
 ```
 
-The package exposes the same formatters that power the extension popup — given an already-generated brief object, it serializes to markdown / plain / json / readme. **It does not call any AI** — to *generate* a brief from a job posting, install the browser extension above.
+The package exposes the same formatters that power the extension popup — given an already-generated brief object, it serializes to markdown / plain / json / readme. **It does not call any AI and it does not scrape job pages on its own**. To generate a brief from a live posting, install the browser extension above.
 
 ```js
 const { formatBrief } = require('@v0idd0/interviewprep');
@@ -102,13 +127,36 @@ cat brief.json | interviewprep -f json > out.json
 
 Zero dependencies, MIT-licensed, free forever.
 
+## Why not just use ChatGPT or Gemini?
+
+Because the first problem here is usually capture and structure, not freeform ideation.
+
+For interview prep from a real live posting, the extension has practical advantages:
+
+- no copy-paste from LinkedIn, Indeed, Greenhouse, Lever, or Workday into another tab
+- one fixed output shape every time: 5 likely questions, STAR scaffolds, company card
+- faster repeatable prep instead of prompt fiddling
+- direct browser install path for the pages people already use during job search
+
+Then the npm package takes the same structure and makes it exportable from terminal or CI workflows.
+
+Use ChatGPT or Gemini when you want open-ended brainstorming or many rewrite variants. Use interviewprep when you want the browser to pull the visible posting into a tight prep brief and then export it cleanly.
+
+## Public links
+
+- Portal: [extensions.voiddo.com/interviewprep/](https://extensions.voiddo.com/interviewprep/?ref=interviewprep-readme)
+- Upgrade: [extensions.voiddo.com/interviewprep/upgrade/](https://extensions.voiddo.com/interviewprep/upgrade/?ref=interviewprep-readme)
+- GitHub: [github.com/voidd0/interviewprep](https://github.com/voidd0/interviewprep)
+- npm: [@v0idd0/interviewprep](https://www.npmjs.com/package/@v0idd0/interviewprep)
+
 ## From the same studio
 
 - **[@v0idd0/jsonyo](https://www.npmjs.com/package/@v0idd0/jsonyo)** — JSON swiss army knife, 18 commands, zero limits
 - **[@v0idd0/envguard](https://www.npmjs.com/package/@v0idd0/envguard)** — stop shipping `.env` drift to staging
 - **[@v0idd0/depcheck](https://www.npmjs.com/package/@v0idd0/depcheck)** — find unused dependencies in one command
 - **[@v0idd0/gitstats](https://www.npmjs.com/package/@v0idd0/gitstats)** — git repo analytics, one command
-- **[View all tools →](https://voiddo.com/tools/)**
+- **[View all browser extensions →](https://extensions.voiddo.com/)**
+- **[View all free tools →](https://tools.voiddo.com/)**
 
 ## License
 
